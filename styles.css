@@ -39,6 +39,18 @@ button {
   padding: 2rem;
   width: 40%;
 }
+
+.character-wrapper {
+  background: #eef;
+  padding: 2rem;
+  width: 40%;
+}
+
+.character-wrapper li {
+  margin-left: 40px; 
+  padding-left: 0;
+}
+
 .suggestions-wrapper {
   position: relative;
 }

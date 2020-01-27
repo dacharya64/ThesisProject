@@ -24,6 +24,68 @@ Felt.setQueryRules(`[
 
 ]`);
 
+/// LOAD IN FILES
+
+
+// CAST INFO IN JSON FORM
+
+var json_cast = `[{
+  "Toblin": {
+    "name": "Toblin Stonehill",
+    "occupation": "occupation",
+    "faction": "faction",
+    "status": "status"
+  },
+  "Elmar": {
+    "name": "Elmar Barthen",
+    "occupation": "occupation",
+    "faction": "faction",
+    "status": "status"
+  },
+  "Daren": {
+    "name": "Daren Edermath",
+    "occupation": "occupation",
+    "faction": "faction",
+    "status": "status"
+  },  
+  "Linene": {
+    "name": "Linene Graywind",
+    "occupation": "occupation",
+    "faction": "faction",
+    "status": "status"
+  },  
+  "Halia": {
+    "name": "Halia Thorton",
+    "occupation": "occupation",
+    "faction": "faction",
+    "status": "status"
+  },  
+  "Qelline": {
+    "name": "Qelline Alderleaf",
+    "occupation": "occupation",
+    "faction": "faction",
+    "status": "status"
+  },  
+  "Sister": {
+    "name": "Sister Garaele",
+    "occupation": "occupation",
+    "faction": "faction",
+    "status": "status"
+  },  
+  "Harbin": {
+    "name": "Harbin Wester",
+    "occupation": "occupation",
+    "faction": "faction",
+    "status": "status"
+  },  
+  "Sildar": {
+    "name": "Sildar Hallwinter",
+    "occupation": "occupation",
+    "faction": "faction",
+    "status": "status"
+  }
+}]`
+
 /// GENERATION FUNCTIONS
 
 function getAllCharacterNames(db) {
@@ -75,22 +137,9 @@ function generateProjectName(projectType) {
 }
 
 let allNames = [
-  'Aaron', 'Adam', 'Alex', 'Alice', 'Ann',
-  'Bella', 'Ben', 'Beth',
-  'Cam', 'Cathy', 'Colin',
-  'Emily', 'Emma', 'Erin',
-  'Fred',
-  'Gavin', 'Gillian',
-  'Izzy',
-  'Jacob', 'James', 'Janey', 'Jason', 'Jordan',
-  'Kevin', 'Kurt',
-  'Liz',
-  'Matt',
-  'Nicole', 'Nora',
-  'Quinn',
-  'Robin',
-  'Sarah',
-  'Victor', 'Vincent'
+  'Toblin Stonehill', 'Elmar Barthen', 'Daren Edermath', 'Linene Graywind', 
+  'Halia Thorton', 'Qelline Alderleaf', 'Sister Garaele', 'Harbin Wester',
+  'Sildar Hallwinter'
 ];
 
 const allValues = [
@@ -126,6 +175,28 @@ const allCurses = [
   "work ethic"            // works TOO HARD at price of own well-being at times
 ];
 
+
+const allOccupations = [
+  "Innkeeper",
+  "Trading post owner",
+  "Runs trading post",
+  "Farmer",
+  "Cleric",
+  "Townmaster"
+];
+
+const allFactions = [
+  "Order of the Gauntlet",
+  "Zhentarim",
+  "Harper",
+  "Lords' Alliance"
+];
+
+const allStatuses = [
+  "alive",
+  "dead"
+];
+
 const weightedAllRoles = [
   "undergrad",
   "master's student",
@@ -156,22 +227,15 @@ const allHooks = [
   "social media famous"
 ];
 
-function generateCharacter(db) {
-  const takenNames = getAllCharacterNames(db);
-  const validNames = allNames.filter((n) => takenNames.indexOf(n) === -1);
-  const curse = randNth([randNth(allCurses), null]);
-  const hook = randNth([randNth(allHooks), null, null, null, null, null, null, null]);
+function generateCharacter(db, i) {
+  var char = Object.values(castObjects)[i];
   const entity = {
     type: 'char',
-    name: randNth(validNames),
-    value: shuffle(allValues).slice(0, 2),
-    curse: shuffle(allCurses).slice(0, randInt(1, 2)),
-    role: randNth(weightedAllRoles),
-    romanceTarget: 'nobody',
-    romanceState: 'single',
+    name: `${char.name}`,
+    occupation: `${char.occupation}`,
+    faction:  `${char.faction}`,
+    status:  `${char.status}`,
   };
-  if (hook) entity.hook = hook;
-  console.log(entity);
   return createEntity(db, entity);
 }
 
@@ -213,8 +277,10 @@ let schema = {
 };
 let gameDB = datascript.empty_db(schema);
 
-for (let i = 0; i < 10; i++){
-  gameDB = generateCharacter(gameDB);
+const castArray = JSON.parse(json_cast);
+const castObjects = Object.values(castArray)[0];
+for (let i = 0; i < 9; i++){ // TODO: change this value to # of characters
+  gameDB = generateCharacter(gameDB, i);
 }
 // generate relationships
 for (let [char1, char2] of getAllCharacterPairsUndirected(gameDB)) {
@@ -280,6 +346,18 @@ function runSiftingPatterns() {
   return newNuggets;
 }
 
+function loadJSON(callback) {   
+  var xobj = new XMLHttpRequest();
+  xobj.overrideMimeType("application/json");
+  xobj.open('GET', './cast.json', true);
+  xobj.onreadystatechange = function () {
+    if (xobj.readyState == 4 && xobj.status == "200") {
+      callback(JSON.parse(xobj.responseText));
+    }
+  };
+  xobj.send(null);  
+}
+
 /// return Sim singleton object
 
 return {
@@ -300,6 +378,10 @@ return {
   getAllCharacterNames: function () {
     return getAllCharacterNames(gameDB);
   },
+  // Get a list of all characters
+  // getAllCharacters: function () {
+  //   return getAllCharacters(gameDB);
+  // },
   // Get the ID of the character with the specified name.
   getCharacterIDByName: function(name) {
     return getCharacterIDByName(gameDB, name);

@@ -110,6 +110,25 @@ function renderSuggestedActions() {
   }
 }
 
+function renderNames() {
+  characterList.innerHTML = '';
+  // query sim for list of characters
+  const npcs = Sim.getAllCharacterNames(); 
+  for (let i = 0; i < npcs.length; i++) {
+    const npc = npcs[i];
+    let html = `<div class="character-list">
+      <div class="npc">${npc}</div>
+        <ul>
+          <li>
+            
+          </li>
+        </ul>
+      </div>`
+      const node = createNode(html);
+      characterList.appendChild(node);
+  }
+}
+
 const allValues = ["comfort", "communalism", "science", "survival"];
 
 const authorGoalTypes = {
@@ -299,7 +318,7 @@ openAuthorGoalEditorButton.onclick = function(){
 rerollSuggestedActionsButton.onclick = renderSuggestedActions;
 filterStringInput.onchange = renderSuggestedActions;
 renderSuggestedActions();
-
+renderNames();
 /*
 for (let i = 0; i < 999; i++) {
   Sim.runRandomAction();
