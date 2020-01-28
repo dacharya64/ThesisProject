@@ -32,57 +32,57 @@ Felt.setQueryRules(`[
 var json_cast = `[{
   "Toblin": {
     "name": "Toblin Stonehill",
-    "occupation": "occupation",
-    "faction": "faction",
-    "status": "status"
+    "occupation": "Innkeeper",
+    "faction": "none",
+    "status": "alive"
   },
   "Elmar": {
     "name": "Elmar Barthen",
-    "occupation": "occupation",
-    "faction": "faction",
-    "status": "status"
+    "occupation": "Owns trading post",
+    "faction": "none",
+    "status": "alive"
   },
   "Daren": {
     "name": "Daren Edermath",
-    "occupation": "occupation",
-    "faction": "faction",
-    "status": "status"
+    "occupation": "none",
+    "faction": "Order of the Gauntlet",
+    "status": "alive"
   },  
   "Linene": {
     "name": "Linene Graywind",
-    "occupation": "occupation",
-    "faction": "faction",
-    "status": "status"
+    "occupation": "Runs trading post",
+    "faction": "none",
+    "status": "alive"
   },  
   "Halia": {
     "name": "Halia Thorton",
-    "occupation": "occupation",
-    "faction": "faction",
-    "status": "status"
+    "occupation": "none",
+    "faction": "Zhentarim",
+    "status": "alive"
   },  
   "Qelline": {
     "name": "Qelline Alderleaf",
-    "occupation": "occupation",
-    "faction": "faction",
-    "status": "status"
+    "occupation": "Halfling farmer",
+    "faction": "none",
+    "status": "alive"
   },  
   "Sister": {
     "name": "Sister Garaele",
-    "occupation": "occupation",
-    "faction": "faction",
-    "status": "status"
+    "occupation": "Elf cleric of Tymora",
+    "faction": "Harper",
+    "status": "alive"
   },  
   "Harbin": {
     "name": "Harbin Wester",
-    "occupation": "occupation",
-    "faction": "faction",
-    "status": "status"
+    "occupation": "Townmaster of Phandalin",
+    "faction": "none",
+    "status": "alive"
   },  
   "Sildar": {
     "name": "Sildar Hallwinter",
-    "occupation": "occupation",
-    "faction": "faction",
-    "status": "status"
+    "occupation": "none",
+    "faction": "Lords' Alliance",
+    "status": "alive"
   }
 }]`
 
@@ -106,6 +106,18 @@ function getAllCharacterPairsUndirected(db) {
 
 function getCharacterIDByName(db, name) {
   return datascript.q(`[:find ?c :where [?c "type" "char"] [?c "name" "${name}"]]`, db)[0][0];
+}
+
+function getCharacterOccupationByName(db, name) {
+  return datascript.q(`[:find ?o :where [?c "type" "char"] [?c "name" "${name}"] [?c "occupation" ?o]]`, db);
+}
+
+function getCharacterFactionByName(db, name) {
+  return datascript.q(`[:find ?f :where [?c "type" "char"] [?c "name" "${name}"] [?c "faction" ?f]]`, db);
+}
+
+function getCharacterStatusByName(db, name) {
+  return datascript.q(`[:find ?s :where [?c "type" "char"] [?c "name" "${name}"] [?c "status" ?s]]`, db);
 }
 
 function getImpressions(db, source, target) {
@@ -378,13 +390,21 @@ return {
   getAllCharacterNames: function () {
     return getAllCharacterNames(gameDB);
   },
-  // Get a list of all characters
-  // getAllCharacters: function () {
-  //   return getAllCharacters(gameDB);
-  // },
   // Get the ID of the character with the specified name.
   getCharacterIDByName: function(name) {
     return getCharacterIDByName(gameDB, name);
+  },
+  // Get the occupation of the character with the specified name.
+  getCharacterOccupationByName: function(name) {
+    return getCharacterOccupationByName(gameDB, name);
+  },
+  // Get the faction of the character with the specified name. 
+  getCharacterFactionByName: function(name) {
+    return getCharacterFactionByName(gameDB, name);
+  },
+  // Get the status of the character with the specified name. 
+  getCharacterStatusByName: function(name) {
+    return getCharacterStatusByName(gameDB, name);
   },
   // Get a list of suggested potential actions, sorted by salience to the current situation.
   getSuggestedActions: function() {

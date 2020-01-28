@@ -117,10 +117,16 @@ function renderNames() {
   for (let i = 0; i < npcs.length; i++) {
     const npc = npcs[i];
     let html = `<div class="character-list">
-      <div class="npc">${npc}</div>
+      <div class="npc"><h4>${npc}</h4></div>
         <ul>
           <li>
-            
+            Occupation: ${Sim.getCharacterOccupationByName(npc)}
+          </li>
+          <li>
+            Faction: ${Sim.getCharacterFactionByName(npc)}
+          </li>
+          <li>
+            Status: ${Sim.getCharacterStatusByName(npc)}
           </li>
         </ul>
       </div>`
