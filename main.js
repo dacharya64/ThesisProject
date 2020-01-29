@@ -211,9 +211,8 @@ for (let goalType of Object.keys(authorGoalTypes)) {
   authorGoalTypes[goalType].type = goalType;
 }
 
+//Set default author goals here
 let authorGoals = [
-  {type: "castSuspicionOnCharacter", params: [Sim.getAllCharacterNames()[0]]},
-  {type: "escalateTensionBetweenValues", params: ["comfort", "survival"]}
 ];
 
 function renderAuthorGoalEditor() {
@@ -325,8 +324,3 @@ rerollSuggestedActionsButton.onclick = renderSuggestedActions;
 filterStringInput.onchange = renderSuggestedActions;
 renderSuggestedActions();
 renderNames();
-/*
-for (let i = 0; i < 999; i++) {
-  Sim.runRandomAction();
-}
-*/

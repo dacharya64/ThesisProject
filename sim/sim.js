@@ -24,9 +24,6 @@ Felt.setQueryRules(`[
 
 ]`);
 
-/// LOAD IN FILES
-
-
 // CAST INFO IN JSON FORM
 
 var json_cast = `[{
@@ -82,6 +79,12 @@ var json_cast = `[{
     "name": "Sildar Hallwinter",
     "occupation": "none",
     "faction": "Lords' Alliance",
+    "status": "alive"
+  }, 
+  "PlayerParty": {
+    "name": "Player Party",
+    "occupation": "none",
+    "faction": "none",
     "status": "alive"
   }
 }]`
@@ -209,31 +212,6 @@ const allStatuses = [
   "dead"
 ];
 
-const weightedAllRoles = [
-  "undergrad",
-  "master's student",
-  "master's student",
-  "master's student",
-  "master's student",
-  "PhD student",
-  "PhD student",
-  "PhD student",
-  "PhD student",
-  "PhD student",
-  "PhD student",
-  "postdoc",
-  "postdoc",
-  "assistant professor",
-  "assistant professor",
-  "assistant professor",
-  "assistant professor",
-  "associate professor",
-  "full professor",
-  "full professor",
-  "emeritus professor",
-  "venue staff"
-];
-
 const allHooks = [
   "secret expert",
   "social media famous"
@@ -291,7 +269,7 @@ let gameDB = datascript.empty_db(schema);
 
 const castArray = JSON.parse(json_cast);
 const castObjects = Object.values(castArray)[0];
-for (let i = 0; i < 9; i++){ // TODO: change this value to # of characters
+for (let i = 0; i < 10; i++){ // TODO: change this value to # of characters
   gameDB = generateCharacter(gameDB, i);
 }
 // generate relationships
