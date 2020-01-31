@@ -241,7 +241,6 @@ function generateCharacter(db, i, castObjects) {
 
 function generateRumor(db, i, rumors) {
   var rumor = Object.values(rumors)[i];
-  console.log(rumor);
   return createEntity(db, {
     type: 'rumor', 
     source: `${rumor.source}`, 

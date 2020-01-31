@@ -36,6 +36,16 @@ Felt.registerAction('HearComplaintsAbout', {
   })
 });
 
+Felt.registerAction('SomeoneDoesBadThing', {
+  tagline: 'The party sees someone doing a bad thing...',
+  where: [
+   '?c1 "name" ?n1'
+  ],
+  event: (vars) => ({
+    text: "The party sees someone doing a bad thing..."
+  })
+});
+
 Felt.registerAction('FindOutSomeoneWasBehind', {
   tagline: 'The party investigates something and learns that someone is behind it',
   where: [
