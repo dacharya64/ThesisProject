@@ -1,5 +1,5 @@
-Felt.registerAction('Attack', {
-  tagline: '?n1: Attack ?n2',
+Felt.registerAction('PartyAttacked', {
+  tagline: 'The party is attacked by...',
   where: [
     '(dislikes ?c1 ?c2)',
     '?c1 "name" ?n1',
@@ -9,32 +9,39 @@ Felt.registerAction('Attack', {
     actor: vars.c1,
     target: vars.c2,
     effects: [
-      {type: 'addAttitude', charge: 'negative', source: vars.c2, target: vars.c1}
     ],
-    text: "🔪 Out of nowhere, " + vars.n1 + " attacked " + vars.n2 + "!"
+    text: "Out of nowhere, the party is attacked!"
   })
 });
 
-Felt.registerAction('SpreadRumor', {
-  tagline: '?n1: Spreads Rumor',
+Felt.registerAction('OverhearRumor', {
+  tagline: 'The party hears a rumor about...',
   where: [
-    '?c1 "name" ?n1',
+    '?r1 "type" "rumor"',
+    '?r1 "state" "untold"',
+    '?r1 "rumorText" ?t1'
   ],
   event: (vars) => ({
-    text: "💬 " + vars.n1 + " spreads a rumor that..."
+    text: `You hear a rumor that ${vars.t1}`
   })
 });
 
-Felt.registerAction('AskForHelp', {
-  tagline: '?n1: Asks For Help From ?n2',
+Felt.registerAction('HearComplaintsAbout', {
+  tagline: 'The party hears complaints about someone',
   where: [
-    '?c1 "name" ?n1',
-    '?c2 "name" ?n2',
-    '(not= ?c1 ?c2)'
+   '?c1 "name" ?n1'
   ],
   event: (vars) => ({
-    actor: vars.c1,
-    target: vars.c2,
-    text: "❗ " + vars.n1 + " asks for help from " + vars.n2 + ", saying that they need..."
+    text: "You hear a complaint that someone..."
+  })
+});
+
+Felt.registerAction('FindOutSomeoneWasBehind', {
+  tagline: 'The party investigates something and learns that someone is behind it',
+  where: [
+   '?c1 "name" ?n1'
+  ],
+  event: (vars) => ({
+    text: "The party realizes that someone was behind their investigation of..."
   })
 });

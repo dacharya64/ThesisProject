@@ -9,6 +9,18 @@ Felt.registerEffectHandler('addAttitude', function(db, effect) {
   });
 });
 
+// Felt.registerEffectHandler('addRumor', function(db, effect) {
+//   Felt.checkEffectKeys(effect, ['source', 'rumorText', 'state']);
+//   db = createEntity(db, {
+//     type: 'rumor',
+//     source: effect.source,
+//     state: 'untold',
+//     rumorText: effect.rumorText
+//   });
+//   projectID = newestEID(db);
+//   return updateProperty(db, effect.cause, 'project', projectID);
+// });
+
 Felt.registerEffectHandler('startProject', function(db, effect) {
   Felt.checkEffectKeys(effect, ['contributors', 'projectType', 'projectName']);
   db = createEntity(db, {
