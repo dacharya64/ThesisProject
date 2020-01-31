@@ -1,25 +1,8 @@
-Felt.registerEffectHandler('addAttitude', function(db, effect) {
-  Felt.checkEffectKeys(effect, ['cause', 'charge', 'source', 'target']);
-  return createEntity(db, {
-    type: 'attitude',
-    cause: effect.cause,
-    charge: effect.charge,
-    source: effect.source,
-    target: effect.target
-  });
+// When someone tells a rumor, its state is set to "told"
+Felt.registerEffectHandler('tellRumor', function(db, effect) {
+  Felt.checkEffectKeys(effect, ['rumor', 'newState']);
+  return updateProperty(db, effect.rumor, 'state', effect.newState);
 });
-
-// Felt.registerEffectHandler('addRumor', function(db, effect) {
-//   Felt.checkEffectKeys(effect, ['source', 'rumorText', 'state']);
-//   db = createEntity(db, {
-//     type: 'rumor',
-//     source: effect.source,
-//     state: 'untold',
-//     rumorText: effect.rumorText
-//   });
-//   projectID = newestEID(db);
-//   return updateProperty(db, effect.cause, 'project', projectID);
-// });
 
 Felt.registerEffectHandler('startProject', function(db, effect) {
   Felt.checkEffectKeys(effect, ['contributors', 'projectType', 'projectName']);

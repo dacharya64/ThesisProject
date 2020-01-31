@@ -10,7 +10,7 @@ Felt.registerAction('PartyAttacked', {
     target: vars.c2,
     effects: [
     ],
-    text: "Out of nowhere, the party is attacked!"
+    text: "The party is attacked by someone."
   })
 });
 
@@ -22,6 +22,9 @@ Felt.registerAction('OverhearRumor', {
     '?r1 "rumorText" ?t1'
   ],
   event: (vars) => ({
+    effects: [
+      {type: 'tellRumor', rumor: vars.r1, newState: 'told'},
+    ],
     text: `You hear a rumor that ${vars.t1}`
   })
 });

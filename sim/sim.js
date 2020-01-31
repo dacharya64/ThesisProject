@@ -314,7 +314,7 @@ for (let i = 0; i < 50; i++){
 }
 //Add rumors for each of the rumors
 const rumors = JSON.parse(json_rumors);
-for (let i = 0; i < 5; i++){ // TODO: change this value to # of rumors
+for (let i = 0; i < 6; i++){ // TODO: change this value to # of rumors
   gameDB = generateRumor(gameDB, i, rumors);
 }
 for (let charPair of getAllCharacterPairs(gameDB)) {
