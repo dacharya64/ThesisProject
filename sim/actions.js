@@ -19,13 +19,14 @@ Felt.registerAction('OverhearRumor', {
   where: [
     '?r1 "type" "rumor"',
     '?r1 "state" "untold"',
-    '?r1 "rumorText" ?t1'
+    '?r1 "rumorText" ?t1', 
+    '?r1 "teller" ?s1'
   ],
   event: (vars) => ({
     effects: [
       {type: 'tellRumor', rumor: vars.r1, newState: 'told'},
     ],
-    text: `You hear a rumor that ${vars.t1}`
+    text: `You hear a rumor from ${vars.s1} that ${vars.t1}`
   })
 });
 
