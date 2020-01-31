@@ -241,7 +241,6 @@ function generateCharacter(db, i, castObjects) {
 
 function generateRumor(db, i, rumors) {
   var rumor = Object.values(rumors)[i];
-  console.log(rumor);
   return createEntity(db, {
     type: 'rumor', 
     source: `${rumor.source}`, 
@@ -315,7 +314,7 @@ for (let i = 0; i < 50; i++){
 }
 //Add rumors for each of the rumors
 const rumors = JSON.parse(json_rumors);
-for (let i = 0; i < 5; i++){ // TODO: change this value to # of rumors
+for (let i = 0; i < 6; i++){ // TODO: change this value to # of rumors
   gameDB = generateRumor(gameDB, i, rumors);
 }
 for (let charPair of getAllCharacterPairs(gameDB)) {
