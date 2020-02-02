@@ -1,4 +1,4 @@
-[{
+var json_cast = `[{
   "Toblin": {
     "name": "Toblin Stonehill",
     "occupation": "Innkeeper",
@@ -53,10 +53,16 @@
     "faction": "Lords' Alliance",
     "status": "alive"
   }, 
+  "Narth": {
+    "name": "Narth",
+    "occupation": "Farmer",
+    "faction": "none",
+    "status": "alive"
+  },
   "PlayerParty": {
     "name": "Player Party",
     "occupation": "none",
     "faction": "none",
     "status": "alive"
   }
-}]
+}]`
