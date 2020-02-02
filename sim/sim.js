@@ -224,7 +224,6 @@ function generateRumor(db, i, rumors) {
     state: `${rumor.state}`,
     rumorText: `${rumor.rumorText}`  
   }
-  console.log(entity);
   return createEntity(db, entity);
 }
 
@@ -268,7 +267,7 @@ let gameDB = datascript.empty_db(schema);
 
 const castArray = JSON.parse(json_cast);
 const castObjects = Object.values(castArray)[0];
-for (let i = 0; i < 11; i++){ // TODO: change this value to # of characters
+for (let i = 0; i < _.size(castObjects); i++){ 
   gameDB = generateCharacter(gameDB, i, castObjects);
 }
 // generate relationships
@@ -293,7 +292,7 @@ for (let i = 0; i < 50; i++){
 }
 //Add rumors for each of the rumors
 const rumors = JSON.parse(json_rumors);
-for (let i = 0; i < 6; i++){ // TODO: change this value to # of rumors
+for (let i = 0; i < _.size(rumors); i++){ 
   gameDB = generateRumor(gameDB, i, rumors);
 }
 for (let charPair of getAllCharacterPairs(gameDB)) {
