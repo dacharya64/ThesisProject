@@ -1,5 +1,5 @@
 Felt.registerAction('PartyAttacked', {
-  tagline: 'The party is attacked by...',
+  tagline: 'The party is attacked by ?n1',
   where: [
     '(dislikes ?c1 ?c2)',
     '?c1 "name" ?n1',
@@ -10,7 +10,7 @@ Felt.registerAction('PartyAttacked', {
     target: vars.c2,
     effects: [
     ],
-    text: "The party is attacked by someone."
+    text: `${vars.n2} is attacked by ${vars.n1}!`
   })
 });
 

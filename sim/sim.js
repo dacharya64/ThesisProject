@@ -132,7 +132,6 @@ function generateLocation(db, i, locations) {
     state: `${location.state}`,
     npcs: `${location.NPCs}`
   }
-  console.log(entity);
   return createEntity(db, entity);
 }
 
@@ -155,6 +154,15 @@ function generateAffection(db, char1, char2) {
     target: char2,
     type: 'affection',
     realizedLove: false
+  });
+}
+
+function generateRelationship(db, char1, char2) {
+  return createEntity(db, {
+    type: 'ship',
+    charge: randInt(-5, 5),
+    source: char1,
+    target: char2
   });
 }
 
@@ -184,18 +192,37 @@ for (let i = 0; i < _.size(castObjects); i++){
 for (let [char1, char2] of getAllCharacterPairsUndirected(gameDB)) {
   const pair1to2 = [char1, char2];
   const pair2to1 = [char2, char1];
-  gameDB = createEntity(gameDB, {
+  // Set relationship as negative between Player Party and Redbrands
+  if (char1 == 11 && char2 == 12) {
+    console.log("Player and redbrands");
+    gameDB = createEntity(gameDB, {
     type: 'ship',
-    charge: randInt(-5, 5),
+    charge: 0,
+    source: char1,
+    target: char2
+    });
+    gameDB = createEntity(gameDB, {
+      type: 'ship',
+      charge: -5,
+      source: char2,
+      target: char1
+    });
+  }
+  //Everyone else has a neutral relationship
+  else {
+    gameDB = createEntity(gameDB, {
+    type: 'ship',
+    charge: 0,
     source: char1,
     target: char2
   });
   gameDB = createEntity(gameDB, {
     type: 'ship',
-    charge: randInt(-5, 5),
+    charge: 0,
     source: char2,
     target: char1
   });
+  }
 }
 for (let i = 0; i < 50; i++){
   gameDB = generateAttitude(gameDB);
