@@ -15,18 +15,19 @@ Felt.registerAction('PartyAttacked', {
 });
 
 Felt.registerAction('OverhearRumor', {
-  tagline: 'The party hears a rumor from ?s1 about...',
+  tagline: 'The party hears a rumor from ?t1 about ?s1',
   where: [
     '?r1 "type" "rumor"',
     '?r1 "state" "untold"',
-    '?r1 "rumorText" ?t1', 
-    '?r1 "teller" ?s1'
+    '?r1 "rumorText" ?rt1', 
+    '?r1 "teller" ?t1',
+    '?r1 "snippet" ?s1'
   ],
   event: (vars) => ({
     effects: [
       {type: 'tellRumor', rumor: vars.r1, newState: 'told'},
     ],
-    text: `The party hears a rumor from ${vars.s1} that ${vars.t1}`
+    text: `The party hears a rumor from ${vars.t1}: "${vars.rt1}"`
   })
 });
 
