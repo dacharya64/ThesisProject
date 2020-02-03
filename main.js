@@ -75,7 +75,7 @@ function runSuggestedAction(suggested) {
   // add new entry to bottom of transcript, with default text from selected action
   transcriptUI.appendChild(createNode(`<div class="entry">
     <div class="defaultdesc">${event.text}</div>
-    <div class="userdesc" contenteditable data-default-text="Your description here..."></div>
+    <div class="userdesc" contenteditable data-default-text="Additional notes here..."></div>
   </div>`));
   // get and render new suggested actions
   renderSuggestedActions();
