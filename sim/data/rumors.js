@@ -4,14 +4,12 @@ var json_rumors = `{
     "state": "untold",
     "rumorText": "Sister Garaele, who oversees the Shrine of Luck, recently left town for a few days, then returned wounded and exhausted.",
     "snippet": "Sister Garaele's recent injuries"
-
   },
   "2": {
     "teller": "Elsa", 
     "state": "untold",
     "rumorText": "Daran Edermath, the orchardkeeper, is a former adventurer.",
     "snippet": "Daran the orchardkeeper's past"
-
   },
   "3": {
     "teller": "Lanar", 
