@@ -118,7 +118,8 @@ function generateRumor(db, i, rumors) {
     type: 'rumor', 
     teller: `${rumor.teller}`, 
     state: `${rumor.state}`,
-    rumorText: `${rumor.rumorText}`  
+    rumorText: `${rumor.rumorText}`,
+    snippet: `${rumor.snippet}` 
   }
   return createEntity(db, entity);
 }
