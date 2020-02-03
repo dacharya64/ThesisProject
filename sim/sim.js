@@ -124,6 +124,19 @@ function generateRumor(db, i, rumors) {
   return createEntity(db, entity);
 }
 
+function generateLocation(db, i, locations) {
+  var location = Object.values(locations)[i];
+  const entity = {
+    type: 'location', 
+    name: `${location.name}`, 
+    state: `${location.state}`,
+    npcs: `${location.NPCs}`
+  }
+  console.log(entity);
+  return createEntity(db, entity);
+}
+
+
 function generateAttitude(db) {
   let charPairs = getAllCharacterPairs(db);
   let charPair = randNth(charPairs);
@@ -191,6 +204,11 @@ for (let i = 0; i < 50; i++){
 const rumors = JSON.parse(json_rumors);
 for (let i = 0; i < _.size(rumors); i++){ 
   gameDB = generateRumor(gameDB, i, rumors);
+}
+//Add locations for each of the locations
+const locations = JSON.parse(json_locations);
+for (let i = 0; i < _.size(locations); i++){ 
+  gameDB = generateLocation(gameDB, i, locations);
 }
 for (let charPair of getAllCharacterPairs(gameDB)) {
   gameDB = generateAffection(gameDB, charPair[0], charPair[1]);

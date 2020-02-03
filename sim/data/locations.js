@@ -2,37 +2,37 @@ var json_locations = `{
   "1": {
     "name": "The Stonehill Inn", 
     "state": "undiscovered",
-    "NPCs": [Toblen Stonehill, Narth, Elsa, Lanar, Trilena, Pip, Freda]
+    "NPCs": ["Toblen Stonehill", "Narth", "Elsa", "Lanar", "Trilena", "Pip", "Freda"]
   },
   "2": {
     "name": "Lionshield Coster", 
     "state": "undiscovered",
-    "NPCs": [Linene Graywind]
+    "NPCs": ["Linene Graywind"]
   },
   "3": {
     "name": "Barthen's Provisions", 
     "state": "undiscovered",
-    "NPCs": [Elmar Barthen, Ander, Thistle]
+    "NPCs": ["Elmar Barthen", "Ander", "Thistle"]
   },
   "4": {
     "name": "Townmaster's Hall", 
     "state": "undiscovered",
-    "NPCs": [Harbin Wester]
+    "NPCs": ["Harbin Wester"]
   },
   "5": {
     "name": "Shrine of Luck", 
     "state": "undiscovered",
-    "NPCs": [Sister Garaele]
+    "NPCs": ["Sister Garaele"]
   },
   "6": {
     "name": "Sleeping Giant tap house", 
     "state": "undiscovered",
-    "NPCs": [Grista, Redbrand thugs]
+    "NPCs": ["Grista", "Redbrand thugs"]
   },
   "7": {
     "name": "Edermath Orchard", 
     "state": "undiscovered",
-    "NPCs": [Daran Edermath]
+    "NPCs": ["Daran Edermath"]
   },
   "8": {
     "name": "Tresendar Manor", 
@@ -47,12 +47,12 @@ var json_locations = `{
   "10": {
     "name": "Phandalin Miner’s Exchange", 
     "state": "undiscovered",
-    "NPCs": [Halia Thornton]
+    "NPCs": ["Halia Thornton"]
   },
   "11": {
     "name": "Alderleaf Farm", 
     "state": "undiscovered",
-    "NPCs": [Qelline Alderleaf, Carp],
+    "NPCs": ["Qelline Alderleaf", "Carp"]
   },
   "12": {
     "name": "Thundertree", 
