@@ -10,7 +10,7 @@ Felt.registerAction('PartyAttacked', {
     target: vars.c2,
     effects: [
     ],
-    text: `${vars.n2} is attacked by ${vars.n1}!`
+    text: `${vars.n2.charAt(0).toUpperCase() + vars.n2.slice(1)} is attacked by ${vars.n1}!`
   })
 });
 
