@@ -136,7 +136,6 @@ function generateLocation(db, i, locations) {
 }
 
 function generateComplaint(db, i, complaints) {
-  console.log("generating complaints...")
   var complaint = Object.values(complaints)[i];
   const entity = {
     type: 'complaint', 
@@ -144,6 +143,18 @@ function generateComplaint(db, i, complaints) {
     state: `${complaint.state}`,
     subject: `${complaint.subject}`,
     snippet: `${complaint.snippet}`
+  }
+  return createEntity(db, entity);
+}
+
+function generateInvestigation(db, i, investigations) {
+  var investigation = Object.values(investigations)[i];
+  const entity = {
+    type: 'investigation', 
+    teller: `${investigation.teller}`, 
+    state: `${investigation.state}`,
+    subject: `${investigation.subject}`,
+    snippet: `${investigation.snippet}`
   }
   return createEntity(db, entity);
 }
@@ -250,6 +261,12 @@ for (let i = 0; i < _.size(rumors); i++){
 const complaints = JSON.parse(json_complaints);
 for (let i = 0; i < _.size(complaints); i++){ 
   gameDB = generateComplaint(gameDB, i, complaints);
+}
+
+//Add investigations
+const investigations = JSON.parse(json_investigations);
+for (let i = 0; i < _.size(investigations); i++){ 
+  gameDB = generateInvestigation(gameDB, i, investigations);
 }
 
 //Add locations for each of the locations
