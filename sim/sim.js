@@ -73,7 +73,7 @@ function getRumor(db, source) {
                         :where [?r "type" "rumor"] [?r "source" ${source}]]`, db);
 }
 
-let allNames = [
+const allNames = [
   'Toblin Stonehill', 'Elmar Barthen', 'Daren Edermath', 'Linene Graywind', 
   'Halia Thorton', 'Qelline Alderleaf', 'Sister Garaele', 'Harbin Wester',
   'Sildar Hallwinter'
@@ -135,6 +135,18 @@ function generateLocation(db, i, locations) {
   return createEntity(db, entity);
 }
 
+function generateComplaint(db, i, complaints) {
+  console.log("generating complaints...")
+  var complaint = Object.values(complaints)[i];
+  const entity = {
+    type: 'complaint', 
+    teller: `${complaint.teller}`, 
+    state: `${complaint.state}`,
+    subject: `${complaint.subject}`,
+    snippet: `${complaint.snippet}`
+  }
+  return createEntity(db, entity);
+}
 
 function generateAttitude(db) {
   let charPairs = getAllCharacterPairs(db);
@@ -194,7 +206,6 @@ for (let [char1, char2] of getAllCharacterPairsUndirected(gameDB)) {
   const pair2to1 = [char2, char1];
   // Set relationship as negative between Player Party and Redbrands
   if (char1 == 11 && char2 == 12) {
-    console.log("Player and redbrands");
     gameDB = createEntity(gameDB, {
     type: 'ship',
     charge: 0,
@@ -207,7 +218,7 @@ for (let [char1, char2] of getAllCharacterPairsUndirected(gameDB)) {
       source: char2,
       target: char1
     });
-  }
+  } 
   //Everyone else has a neutral relationship
   else {
     gameDB = createEntity(gameDB, {
@@ -224,19 +235,29 @@ for (let [char1, char2] of getAllCharacterPairsUndirected(gameDB)) {
   });
   }
 }
+
 for (let i = 0; i < 50; i++){
   gameDB = generateAttitude(gameDB);
 }
+
 //Add rumors for each of the rumors
 const rumors = JSON.parse(json_rumors);
 for (let i = 0; i < _.size(rumors); i++){ 
   gameDB = generateRumor(gameDB, i, rumors);
 }
+
+//Add complaints
+const complaints = JSON.parse(json_complaints);
+for (let i = 0; i < _.size(complaints); i++){ 
+  gameDB = generateComplaint(gameDB, i, complaints);
+}
+
 //Add locations for each of the locations
 const locations = JSON.parse(json_locations);
 for (let i = 0; i < _.size(locations); i++){ 
   gameDB = generateLocation(gameDB, i, locations);
 }
+
 for (let charPair of getAllCharacterPairs(gameDB)) {
   gameDB = generateAffection(gameDB, charPair[0], charPair[1]);
 }
