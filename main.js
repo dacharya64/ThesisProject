@@ -315,10 +315,10 @@ function renderAuthorGoalEditor() {
   }
 }
 
-openAuthorGoalEditorButton.onclick = function(){
-  authorGoalEditorUI.classList.add("visible");
-  renderAuthorGoalEditor();
-};
+// openAuthorGoalEditorButton.onclick = function(){
+//   authorGoalEditorUI.classList.add("visible");
+//   renderAuthorGoalEditor();
+// };
 
 rerollSuggestedActionsButton.onclick = renderSuggestedActions;
 filterStringInput.onchange = renderSuggestedActions;

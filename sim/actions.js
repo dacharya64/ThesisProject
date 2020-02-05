@@ -51,6 +51,21 @@ Felt.registerAction('HearComplaintsAbout', {
   })
 });
 
+// Investigate something
+Felt.registerAction('HearAboutStrangeOccurences', {
+  tagline: 'The party hears from ?t1 about ?s1',
+  where: [
+   '?r1 "type" "investigation"', 
+   '?r1 "state" "untold"',
+   '?r1 "subject" ?rt1', 
+   '?r1 "teller" ?t1',
+   '?r1 "snippet" ?s1'
+  ],
+  event: (vars) => ({
+    text: `The party hears from ${vars.t1} that they want the players to investigate something strange going on in the area: ${vars.rt1}`
+  })
+});
+
 // Felt.registerAction('SomeoneDoesBadThing', {
 //   tagline: 'The party sees someone doing a bad thing...',
 //   where: [
@@ -68,16 +83,5 @@ Felt.registerAction('HearComplaintsAbout', {
 //   ],
 //   event: (vars) => ({
 //     text: "The party realizes that someone was behind their investigation of..."
-//   })
-// });
-
-// Felt.registerAction('AskedForHelpWith', {
-//   tagline: 'The party is asked for help with ?n1\'s problem',
-//   where: [
-//    '?c1 "name" ?n1',
-
-//   ],
-//   event: (vars) => ({
-//     text: `${vars.c1} asks the party to help with their problem: "${vars.q1}"`
 //   })
 // });

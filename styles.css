@@ -27,7 +27,7 @@ button {
   padding-left: 1rem;
 }
 .transcript .entry .defaultdesc {
-  font-weight: bold;
+  /*font-weight: bold;*/
 }
 .transcript .entry .userdesc:empty:not(:focus):before {
   color: grey;
@@ -69,9 +69,9 @@ button {
   font-size: 0.75rem;
   margin-left: 1rem;
 }
-#openAuthorGoalEditorButton {
+/*#openAuthorGoalEditorButton {
   margin-bottom: 1rem;
-}
+}*/
 #authorGoalEditorUI {
   display: none; /* Hidden by default */
   position: fixed; /* Sit on top of the page content */
