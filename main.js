@@ -135,6 +135,31 @@ function renderNames() {
   }
 }
 
+
+function renderLocations() {
+  locationList.innerHTML = '';
+  // query sim for list of locations
+  const locations = Sim.getAllLocationNames(); 
+  for (let i = 0; i < locations.length; i++) {
+    const location = locations[i];
+    const NPCArray = Sim.getLocationNPCsByName(location);
+    console.log("NPCs: " + NPCArray);
+    let html = `<div class="location-list">
+      <div class="location"><h4>${location}</h4></div>
+        <ul>
+          <li>
+            State: ${Sim.getLocationStateByName(location)}
+          </li>
+          <li>
+            NPCs at location: ${Sim.getLocationNPCsByName(location)}
+          </li>
+        </ul>
+      </div>`
+      const node = createNode(html);
+      locationList.appendChild(node);
+  }
+}
+
 const allValues = ["comfort", "communalism", "science", "survival"];
 
 const authorGoalTypes = {
@@ -324,3 +349,4 @@ rerollSuggestedActionsButton.onclick = renderSuggestedActions;
 filterStringInput.onchange = renderSuggestedActions;
 renderSuggestedActions();
 renderNames();
+renderLocations();
