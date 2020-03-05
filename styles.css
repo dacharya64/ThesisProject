@@ -5,6 +5,7 @@
 }
 body {
   font-family: Georgia;
+  background-color: #FDFBFC;
 }
 main {
   display: flex;
@@ -17,9 +18,9 @@ button {
   padding: .25rem;
 }
 .transcript-wrapper {
-  background: #efe;
+  background: #FDFBFC;
   padding: 2rem;
-  width: 60%;
+  width: 90%;
 }
 .transcript .entry {
   border-left: 4px solid #ccc;
@@ -35,20 +36,44 @@ button {
   font-style: italic;
 }
 .sidebar {
-  background: #eef;
+  background: #EEF2F5;
+  padding: 2rem;
+  width: 100%;
+}
+
+.background-wrapper {
+  background: #EEF2F5;
   padding: 2rem;
   width: 40%;
 }
 
-.character-wrapper {
-  background: #eef;
+.location-wrapper {
+  background: #EEF2F5;
   padding: 2rem;
-  width: 40%;
+  width: 100%;
+}
+
+.character-wrapper {
+  background: #EEF2F5;
+  padding: 2rem;
+  width: 100%;
 }
 
 .character-wrapper li {
   margin-left: 40px; 
   padding-left: 0;
+}
+
+.column {
+  float: left;
+  width: 50%;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
 }
 
 .suggestions-wrapper {
@@ -109,4 +134,39 @@ button {
 }
 .author-goal-editor-inner .author-goal select {
   margin-right: 0.5rem;
+}
+
+/* Tab styling */
+
+.tab {
+  overflow: hidden;
+  /*border: 1px solid #ccc;
+  background-color: #f1f1f1;*/
+}
+
+/* Style the buttons that are used to open the tab content */
+.tab button {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+  background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+  background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+  display: none;
+  padding: 6px 12px;
 }
