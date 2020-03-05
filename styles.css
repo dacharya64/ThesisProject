@@ -64,6 +64,11 @@ button {
   padding-left: 0;
 }
 
+.location-wrapper li {
+  margin-left: 40px; 
+  padding-left: 0;
+}
+
 .column {
   float: left;
   width: 50%;

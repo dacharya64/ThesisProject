@@ -30,6 +30,10 @@ function getAllCharacterNames(db) {
   return datascript.q('[:find ?n :where [?c "type" "char"] [?c "name" ?n]]', db).map(vars => vars[0]);
 }
 
+function getAllLocationNames(db) {
+  return datascript.q('[:find ?n :where [?c "type" "loc"] [?c "name" ?n]]', db).map(vars => vars[0]);
+}
+
 function getAllCharacterPairs(db) {
   return datascript.q('[:find ?c1 ?c2 \
                         :where [?c1 "type" "char"] [?c2 "type" "char"] [(not= ?c1 ?c2)]]', db);
@@ -56,6 +60,16 @@ function getCharacterFactionByName(db, name) {
 
 function getCharacterStatusByName(db, name) {
   return datascript.q(`[:find ?s :where [?c "type" "char"] [?c "name" "${name}"] [?c "status" ?s]]`, db);
+}
+
+function getLocationStateByName(db, name) {
+  return datascript.q(`[:find ?o :where [?c "type" "loc"] [?c "name" "${name}"] [?c "state" ?o]]`, db);
+}
+
+function getLocationNPCsByName(db, name) {
+  const npcloc = datascript.q(`[:find ?o :where [?c "type" "loc"] [?c "name" "${name}"] [?c "NPCs" ?o]]`, db);
+  console.log("Location NPCs: " + npcloc);
+  return npcloc;
 }
 
 function getImpressions(db, source, target) {
@@ -127,10 +141,10 @@ function generateRumor(db, i, rumors) {
 function generateLocation(db, i, locations) {
   var location = Object.values(locations)[i];
   const entity = {
-    type: 'location', 
+    type: 'loc', 
     name: `${location.name}`, 
     state: `${location.state}`,
-    npcs: `${location.NPCs}`
+    NPCs: `${location.NPCs}`
   }
   return createEntity(db, entity);
 }
@@ -353,6 +367,18 @@ return {
   // Get the status of the character with the specified name. 
   getCharacterStatusByName: function(name) {
     return getCharacterStatusByName(gameDB, name);
+  },
+  // Get a list of all location names.
+  getAllLocationNames: function() {
+    return getAllLocationNames(gameDB);
+  },
+  // Get the state of the location with the specified name.
+  getLocationStateByName: function(name) {
+    return getLocationStateByName(gameDB, name);
+  },
+  // Get the NPCs at the location with the specified name. 
+  getLocationNPCsByName: function(name) {
+    return getLocationNPCsByName(gameDB, name);
   },
   // Get a list of suggested potential actions, sorted by salience to the current situation.
   getSuggestedActions: function() {
