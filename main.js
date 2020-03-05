@@ -143,7 +143,6 @@ function renderLocations() {
   for (let i = 0; i < locations.length; i++) {
     const location = locations[i];
     const NPCArray = Sim.getLocationNPCsByName(location);
-    console.log("NPCs: " + NPCArray);
     let html = `<div class="location-list">
       <div class="location"><h4>${location}</h4></div>
         <ul>

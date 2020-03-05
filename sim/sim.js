@@ -67,9 +67,7 @@ function getLocationStateByName(db, name) {
 }
 
 function getLocationNPCsByName(db, name) {
-  const npcloc = datascript.q(`[:find ?o :where [?c "type" "loc"] [?c "name" "${name}"] [?c "NPCs" ?o]]`, db);
-  console.log("Location NPCs: " + npcloc);
-  return npcloc;
+  return datascript.q(`[:find ?o :where [?c "type" "loc"] [?c "name" "${name}"] [?c "NPCs" ?o]]`, db);
 }
 
 function getImpressions(db, source, target) {
