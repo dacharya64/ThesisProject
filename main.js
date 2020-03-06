@@ -135,7 +135,6 @@ function renderNames() {
   }
 }
 
-
 function renderLocations() {
   locationList.innerHTML = '';
   // query sim for list of locations
