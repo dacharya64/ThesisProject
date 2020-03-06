@@ -14,8 +14,8 @@ var json_rumors = `{
   "3": {
     "teller": "Lanar", 
     "state": "untold",
-    "rumorText": "Ore raiders have been seen on the east end of Triboar Trail. The townmaster is looking for someone to run them off.",
-    "snippet": "ore raiders around Triboar Trail"
+    "rumorText": "Orc raiders have been seen on the east end of Triboar Trail. The townmaster is looking for someone to run them off.",
+    "snippet": "orc raiders around Triboar Trail"
   },
   "4": {
     "teller": "Trilena", 
